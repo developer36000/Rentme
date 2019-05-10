@@ -1,0 +1,38 @@
+﻿#require valid-user
+#Authname "Basic Auth"
+#Authtype Basic
+#AuthUserFile "/home/rentcar2/rentcar24.com.ua/.htpasswd"
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+# RewriteCond %{REQUEST_METHOD} ^TRACE
+# RewriteRule .* — [F]
+# RewriteCond %{HTTP_REFERER} !^https://(.+\.)?rentcar24\.com\.ua/ [NC]
+# RewriteCond %{HTTP_REFERER} !^$
+# RewriteRule .*\.(jpe?g|gif|bmp|png)$ /images/nohotlink.jpg [L]
+# RewriteCond %{QUERY_STRING} author=\d
+# RewriteRule ^ /? [L,R=301]
+
+<files wp-config.php>
+	Order deny,allow
+	deny from all
+</files>
+
+<files .htaccess>
+   Order allow,deny
+   deny from all
+</files>
+
+SetEnvIf user-agent «Indy Library» stayout=1
+SetEnvIf user-agent «libwww-perl» stayout=1
+SetEnvIf user-agent «Wget» stayout=1
+deny from env=stayout

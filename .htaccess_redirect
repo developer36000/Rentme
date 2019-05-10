@@ -1,0 +1,25 @@
+require valid-user
+Authname "Basic Auth"
+Authtype Basic
+AuthUserFile "/home/rentcar2/rentme.com.ua/.htpasswd"
+# BEGIN WordPress
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^rentme\.com\.ua
+RewriteRule ^(.*)$ https://rentcar24.com.ua/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^www.rentme\.com\.ua
+RewriteRule ^(.*)$ https://rentcar24.com.ua/$1 [R=301,L]
+
+#RewriteRule ^index\.php$ - [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule . /index.php [L]
+
+</IfModule>
+
+# END WordPress
+
